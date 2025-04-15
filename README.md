@@ -1,7 +1,3 @@
-¡Perfecto! Acá tenés un `README.md` inicial listo para copiar y pegar en la raíz del proyecto:
-
----
-
 # Grayola Projects App
 
 Aplicación web para la gestión de proyectos de diseño, construida como parte del proceso técnico para **Grayola**.
