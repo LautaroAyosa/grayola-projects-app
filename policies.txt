@@ -1,0 +1,124 @@
+--------------------------------------------------------------------------------
+-- Políticas RLS para la tabla "projects"
+--------------------------------------------------------------------------------
+
+-- A) Policies para "Client"
+--    A1) Client puede insertar (crear) proyecto
+create policy "Client can create project" on projects
+for insert
+with check (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'client'
+  and created_by = auth.uid()
+);
+
+--    A2) Client puede seleccionar (ver) solo sus propios proyectos
+create policy "Client can select own" on projects
+for select
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'client'
+  and created_by = auth.uid()
+);
+
+--    A3) Client puede actualizar solo sus propios proyectos
+create policy "Client can update own project" on projects
+for update
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'client'
+  and created_by = auth.uid()
+);
+
+--    A4) Client puede eliminar solo sus propios proyectos
+create policy "Client can delete own project" on projects
+for delete
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'client'
+  and created_by = auth.uid()
+);
+
+--------------------------------------------------------------------------------
+-- B) Policies para "Project Manager"
+--    B1) Manager puede seleccionar (ver) todos los proyectos
+create policy "Manager can select all" on projects
+for select
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'manager'
+);
+
+--    B2) Manager puede insertar nuevos proyectos (opcional)
+create policy "Manager can insert" on projects
+for insert
+with check (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'manager'
+);
+
+--    B3) Manager puede actualizar cualquier proyecto
+create policy "Manager can update any" on projects
+for update
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'manager'
+);
+
+--    B4) Manager puede eliminar cualquier proyecto
+create policy "Manager can delete any" on projects
+for delete
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'manager'
+);
+
+--------------------------------------------------------------------------------
+-- C) Policies para "Designer"
+--    C1) Designer puede seleccionar (ver) solo los proyectos asignados a él/ella
+create policy "Designer can select assigned" on projects
+for select
+using (
+  (
+    select r.name
+    from roles r
+    join profiles p on p.role_id = r.id
+    where p.id = auth.uid()
+  ) = 'designer'
+  and assigned_to = auth.uid()
+);
+
+-- Nota: No se definen insert/update/delete para "Designer" pues no tiene permiso.
+--------------------------------------------------------------------------------
