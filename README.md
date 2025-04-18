@@ -1,64 +1,89 @@
 # Grayola Projects App
 
-Aplicación web para la gestión de proyectos de diseño, construida como parte del proceso técnico para **Grayola**.
+Aplicación web construida para el technical assessment de Grayola. Permite gestionar proyectos de diseño de forma intuitiva y segura, adaptada a distintos roles de usuario: Clientes, Project Managers y Diseñadores.
 
-## 🛠 Stack técnico
+## 🚀 Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
-- **Backend**: [Supabase](https://supabase.com/) (Autenticación + PostgreSQL)
-- **UI (bonus)**: [ShadCN UI](https://ui.shadcn.com/) (opcional, si suma visualmente)
+- **Framework**: Next.js (App Router)
+- **UI**: Tailwind CSS + ShadCN UI
+- **Backend**: Supabase (PostgreSQL + Auth)
+- **Auth & RBAC**: Supabase + middleware + policies
+- **Deploy**: Vercel
 
-## 🚀 Funcionalidades clave
+## ✅ Features Implementadas
 
-- Autenticación por rol con Supabase
-- CRUD de proyectos con subida de archivos
-- Interfaz limpia, intuitiva y responsiva
-- Protección de rutas y funciones según el rol del usuario
-- Validación de formularios
+### 1. Autenticación y Roles
+- Login/registro vía Supabase Auth.
+- Control de acceso según rol:
+  - **Cliente**: puede crear proyectos.
+  - **Project Manager**: CRUD total de todos los proyectos.
+  - **Diseñador**: acceso solo a proyectos asignados (modo lectura).
 
-## 🧪 Ejecutar localmente
+### 2. Gestión de Proyectos
+- Crear, editar, eliminar y visualizar proyectos.
+- Subida de uno o varios archivos (con soporte de almacenamiento en Supabase).
+- Visualización de archivos adjuntos.
 
-1. Clonar el repo
+### 3. UI & UX
+- Interfaz moderna y responsiva.
+- Formularios accesibles y validados.
+- Dashboard claro y segmentado por tipo de usuario.
+
+### 4. Seguridad
+- Middleware de protección de rutas por rol.
+- Validaciones tanto en frontend como backend.
+- Prevención de acceso indebido a funciones o datos.
+
+## 🧪 Cómo ejecutar el proyecto
+
+### 1. Clona el repositorio
 
 ```bash
-git clone https://github.com/lautaroayosa/grayola-projects-app.git
+git clone https://github.com/tu-usuario/grayola-projects-app.git
 cd grayola-projects-app
 ```
 
-2. Instalar dependencias
-
+### 2. Instala las dependencias
 ```bash
 npm install
 ```
 
-3. Configurar Supabase
+### 3. Configura las variables de entorno
+Crea un archivo .env.local y completalo con tus credenciales de Supabase:
 
-Crear un archivo `.env.local` con las claves de Supabase:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=tu-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-anon-key
+``` env
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=public-anon-key
 ```
 
-4. Ejecutar el proyecto
-
-```bash
+### 4. Corre la app en local
+``` bash
 npm run dev
 ```
 
----
+Abrí `http://localhost:3000` en tu navegador.
 
-## 📄 Licencia
+## 🧠 Notas técnicas
+Se usaron políticas de Row Level Security (RLS) para proteger datos en Supabase.
 
-Este proyecto fue desarrollado exclusivamente como parte de un proceso de selección para Grayola.  
-**No está autorizado su uso parcial o total en ambientes comerciales sin el consentimiento del autor.**
+Se implementó separación de lógica de frontend/backend, manejo de uploads, y validación de roles tanto en cliente como en servidor.
 
-> License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+El sistema de archivos permite subida y eliminación individual por archivo, útil para proyectos en curso.
 
----
+El layout y estructura fueron pensados para escalar fácilmente en un equipo real.
 
-## ✨ Autor
+## 🌐 Deploy
+Aplicación desplegada en Vercel: grayola-projects-app.vercel.app
 
-**Lautaro Ayosa**  
-[https://github.com/lautaroayosa](https://github.com/lautaroayosa)
+## 📁 Estructura del proyecto
+```csharp
+/
+├── app/                      # Rutas y páginas (Next.js App Router)
+├── components/               # Componentes UI reutilizables
+├── lib/                      # Supabase client, helpers & typescript Types
+├── public/                   # Archivos estáticos
+```
+
+## 🤝 Autor
+Proyecto desarrollado por [Lautaro Ayosa](https://github.com/lautaroayosa) como parte del proceso de selección para Grayola.
+

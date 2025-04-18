@@ -15,9 +15,11 @@ export default function CompleteProfileLayout({
         <div className="flex-1 bg-gradient-to-br from-brand to-green-200 relative h-40 lg:h-auto">
           <div className="absolute inset-0 flex items-center justify-center">
             <Image
-              src="/grayola-illustration.png"
+              src="/grayola-illustration.svg"
               alt="Grayola"
               className="w-2/3 max-w-sm lg:max-w-md object-contain"
+              width={400}
+              height={400}
             />
           </div>
         </div>

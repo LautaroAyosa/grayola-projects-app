@@ -202,3 +202,6 @@ body {
   font-family: 'FieldGothic81', sans-serif;
 }
 
+button {
+  cursor: pointer;
+}

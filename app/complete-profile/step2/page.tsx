@@ -28,8 +28,8 @@ export default function Step2() {
   return (
     <div className="space-y-8 font-fg-wide">
       <div>
-        <h1 className="text-3xl font-fg-xwide text-gray-800">What’s your role?</h1>
-        <p className="text-gray-600 mt-2">Select the role that best describes how you’ll use Grayola.</p>
+        <h1 className="text-3xl font-fg-xwide text-gray-800">What&apos;s your role?</h1>
+        <p className="text-gray-600 mt-2">Select the role that best describes how you&apos;ll use Grayola.</p>
       </div>
 
       <form onSubmit={handleNext} className="space-y-6">

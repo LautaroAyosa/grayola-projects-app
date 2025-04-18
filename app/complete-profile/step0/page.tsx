@@ -164,7 +164,7 @@ export default function Step0() {
               Already have one?{' '}
               <button
                 type="button"
-                className="underline text-brand"
+                className="underline text-brand cursor-pointer"
                 onClick={() => {
                   setCreateNew(false)
                   setOrgName('')
@@ -178,7 +178,7 @@ export default function Step0() {
               Don’t see it?{' '}
               <button
                 type="button"
-                className="underline text-brand"
+                className="underline text-brand cursor-pointer"
                 onClick={() => {
                   setCreateNew(true)
                   setSelectedOrg(null)
@@ -193,7 +193,7 @@ export default function Step0() {
 
         <Button
           type="submit"
-          className="w-full bg-black text-white hover:opacity-90 py-5"
+          className="w-full bg-black text-white hover:opacity-90 py-5 cursor-pointer"
           disabled={createNew ? !orgName.trim() : !selectedOrg}
         >
           Continue

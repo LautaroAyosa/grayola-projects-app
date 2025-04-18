@@ -53,14 +53,15 @@ export default function ProjectsList() {
 
       let result: Project[] = []
 
-      if (roleName === 'client') {
-        const { data } = await supabase
-          .from('projects')
-          .select('*, project_files(path)')
-          .eq('created_by', user.id)
-          .order('created_at', { ascending: false })
-        result = data || []
-      } else if (roleName === 'project manager') {
+      // if (roleName === 'client') {
+      //   const { data } = await supabase
+      //     .from('projects')
+      //     .select('*, project_files(path)')
+      //     .eq('created_by', user.id)
+      //     .order('created_at', { ascending: false })
+      //   result = data || []
+      // } else 
+      if (roleName === 'project manager' || roleName === 'client') {
         const { data } = await supabase
           .from('projects')
           .select('*, project_files(path)')

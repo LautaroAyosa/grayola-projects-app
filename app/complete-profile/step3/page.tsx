@@ -73,7 +73,7 @@ export default function Step3() {
 
   const restart = () => {
     localStorage.clear()
-    router.push('/auth/complete-profile/step0')
+    router.push('/complete-profile/step0')
   }
 
   return (
